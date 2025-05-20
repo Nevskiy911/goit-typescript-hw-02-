@@ -1,13 +1,24 @@
-import Modal from "react-modal";
 import s from "./ImageModal.module.css";
+import { ImageType } from "../../api/unsplash";
+import ReactModal from "react-modal";
 
-Modal.setAppElement("#root");
+ReactModal.setAppElement("#root");
 
-export default function ImageModal({ isOpen, image, onRequestClose }) {
+type ImageModalProps = {
+  isOpen: boolean;
+  image: ImageType | null;
+  onRequestClose: () => void;
+};
+
+export default function ImageModal({
+  isOpen,
+  image,
+  onRequestClose,
+}: ImageModalProps) {
   if (!image) return null;
 
   return (
-    <Modal
+    <ReactModal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       shouldCloseOnOverlayClick={true}
@@ -23,6 +34,6 @@ export default function ImageModal({ isOpen, image, onRequestClose }) {
         alt={image.alt_description || "Image"}
         className={s.image}
       />
-    </Modal>
+    </ReactModal>
   );
 }

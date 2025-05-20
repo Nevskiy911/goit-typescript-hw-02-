@@ -1,7 +1,16 @@
 import s from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+import { ImageType } from "../../api/unsplash";
 
-export default function ImageGallery({ images, onImageClick }) {
+type ImageGalleryProps = {
+  images: ImageType[];
+  onImageClick: (image: ImageType) => void;
+};
+
+export default function ImageGallery({
+  images,
+  onImageClick,
+}: ImageGalleryProps) {
   return (
     <ul className={s.gallery}>
       {images.map((img) => (

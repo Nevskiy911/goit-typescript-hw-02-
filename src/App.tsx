@@ -5,17 +5,17 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
-import { fetchImages } from "./api/unsplash";
+import { fetchImages, ImageType } from "./api/unsplash";
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState<ImageType[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
 
-  const handleSearch = async (newQuery) => {
+  const handleSearch = async (newQuery: string) => {
     try {
       setIsLoading(true);
       setError(null);

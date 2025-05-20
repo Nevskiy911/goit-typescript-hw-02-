@@ -1,6 +1,10 @@
 import s from "./ErrorMessage.module.css";
 
-export default function ErrorMessage({ message }) {
+type ErrorMessageProps = {
+  message?: string;
+};
+
+export default function ErrorMessage({ message }: ErrorMessageProps) {
   return (
     <div className={s.error}>
       <p>{message || "Something went wrong..."}</p>

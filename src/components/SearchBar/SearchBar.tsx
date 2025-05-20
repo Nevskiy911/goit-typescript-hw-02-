@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import s from "./SearchBar.module.css";
 
-function SearchBar({ onSubmit }) {
-  const [query, setQuery] = useState("");
+type SearchBarProps = {
+  onSubmit: (query: string) => void;
+};
 
-  const handleSubmit = (e) => {
+function SearchBar({ onSubmit }: SearchBarProps) {
+  const [query, setQuery] = useState<string>("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (query.trim() === "") {
@@ -17,6 +21,10 @@ function SearchBar({ onSubmit }) {
     setQuery("");
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <header>
       <form onSubmit={handleSubmit}>
@@ -26,7 +34,7 @@ function SearchBar({ onSubmit }) {
           autoFocus
           placeholder="Search images and photos"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleChange}
           className={s.input}
         />
         <button type="submit" className={s.btn}>
